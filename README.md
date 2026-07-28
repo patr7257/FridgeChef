@@ -31,5 +31,6 @@ Copy `.env.example` to `.env.local` and set `OPENAI_API_KEY` (or run
 Cost note: image tokens are the expensive part. Keep the spend cap on the OpenAI key;
 the in-memory per-IP rate limit (10 runs/hour) is best-effort only.
 
-Will be inserted into the portfolio website (`patr7257/PatrickRobelWeb`,
-`https://patrickrobel.dk`) once deployed.
+Live at `https://fridgechef.patrickrobel.dk` (own origin because of the PWA service
+worker; `https://www.patrickrobel.dk/fridgechef` redirects there). Portfolio entry lives
+in `patr7257/PatrickRobelWeb` (`website/src/data/projects.ts`).
