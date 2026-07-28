@@ -28,6 +28,10 @@ Filled in from the 2026-07-28 design session. Full spec:
 1. DONE 2026-07-28: design session (spec + this plan).
 2. DONE 2026-07-28: MVP built: capture/compress, /api/ingredients, chips editing,
    /api/recipes, three ranked suggestions, preferences, PWA, tests.
-3. Deploy to Vercel with OPENAI_API_KEY, verify on phone.
-4. Later: TodoList shopping-list integration (GitHub issue), weekly mode, portfolio entry
-   on patrickrobel.dk.
+3. DONE 2026-07-28: deployed to Vercel with OPENAI_API_KEY, live at
+   `https://fridgechef.patrickrobel.dk` (also `fridgechef-seven.vercel.app`), verified
+   end-to-end with a real fridge photo (16 ingredients, 3 ranked Danish recipes).
+4. DONE 2026-07-28: portfolio entry on patrickrobel.dk (PatrickRobelWeb PR #148,
+   /fridgechef redirect, featured rank 12).
+5. Later: TodoList shopping-list integration (issue #1), weekly mode, phone camera test
+   by Patrick.
