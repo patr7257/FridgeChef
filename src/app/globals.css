@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  /* Evening-kitchen palette: warm dark background, butter-amber accent,
+     herb green for "kan laves nu", ember for missing items */
+  --background: #1a1512;
+  --surface: #262019;
+  --surface-raised: #322a21;
+  --foreground: #f5eee3;
+  --muted: #b3a691;
+  --accent: #f2a93b;
+  --accent-deep: #d18a1f;
+  --herb: #96c26e;
+  --ember: #e07b56;
+  --magnet-edge: #453a2c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-herb: var(--herb);
+  --color-ember: var(--ember);
+  --color-magnet-edge: var(--magnet-edge);
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-instrument);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-instrument), system-ui, sans-serif;
+}
+
+/* Fridge-magnet chips: tactile, slightly rotated tiles like magnet letters */
+.magnet {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 2px 4px rgba(0, 0, 0, 0.45),
+    0 6px 12px rgba(0, 0, 0, 0.25);
+}
+.magnet:nth-child(3n) {
+  rotate: -1.5deg;
+}
+.magnet:nth-child(3n + 1) {
+  rotate: 1deg;
+}
+.magnet:nth-child(5n) {
+  rotate: 2deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

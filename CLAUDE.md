@@ -1,23 +1,25 @@
+@AGENTS.md
+
 # CLAUDE.md, FridgeChef (Patrick, pr@zrm.dk)
 
-Idea-stage project: fridge photo in (OpenAI vision), dinner suggestions + recipes out. No
-code exists yet; stack deliberately undecided until the design session.
+Fridge photo in (OpenAI vision), dinner suggestions + recipes out. V1 built 2026-07-28;
+design spec: `docs/superpowers/specs/2026-07-28-fridgechef-design.md`, decisions and
+milestones: `PLAN.md`.
 
 ## Facts
 
-- Repo: `patr7257/FridgeChef` (public).
-- Local clone lives at `C:\Users\pr\repos\1-Personal\FridgeChef`, sibling to
-  `PatrickRobelWeb` (same convention as MusicTimelineQuiz and MiniGames).
-- Showcase relationship: this repo holds the project; where it plugs into the website is
-  decided later and wired from the PatrickRobelWeb repo via its `add-website-project`
-  skill. Do not edit PatrickRobelWeb from here.
-- API: OpenAI vision-capable model, `OPENAI_API_KEY` server-side only. Image upload means
-  the backend route accepts photos; photos of fridges are harmless but still user uploads
-  (size caps, no retention in v1).
-- Mobile-first: the camera flow IS the product. Danish UI likely (æ/ø/å, global rule).
-
-## Read first
-
-- `IDEA.md`: full concept, feature sketch, and the "Questions for Patrick" section that a
-  design session MUST walk through (AskUserQuestion) before writing any code.
-- `PLAN.md`: skeleton to be filled in the design session.
+- Repo: `patr7257/FridgeChef` (public). Local clone at
+  `C:\Users\pr\repos\1-Personal\FridgeChef`, sibling to `PatrickRobelWeb`.
+- Stack: Next.js App Router + TypeScript + Tailwind 4, pnpm, Vercel. Tests with vitest
+  (`pnpm test`).
+- Two-step flow: `POST /api/ingredients` (vision, editable chips) then
+  `POST /api/recipes` (text). Models default to gpt-5-mini via `src/lib/ai.ts`,
+  overridable with `OPENAI_VISION_MODEL` / `OPENAI_TEXT_MODEL`.
+- `OPENAI_API_KEY` server-side only. No photo retention: process and discard, the UI
+  says so. Size caps + best-effort in-memory rate limit in `src/lib/ratelimit.ts`; the
+  real budget guard is the spend cap on the OpenAI key.
+- Danish-only UI (real æ/ø/å). Mobile-first; the camera flow IS the product. PWA:
+  `src/app/manifest.ts`, `public/sw.js`, icons regenerated with
+  `node scripts/generate-icons.mjs`.
+- Showcase relationship: standalone app; the portfolio entry is wired later from the
+  PatrickRobelWeb repo. Do not edit PatrickRobelWeb from here.
