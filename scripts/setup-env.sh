@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Creates .env.local with the OpenAI key for local development.
+# Adds OPENAI_API_KEY to .env.local for local development.
 set -euo pipefail
 cd "$(cd "$(dirname "$0")/.." && pwd)"
 
-if [ -f .env.local ]; then
-  echo ".env.local already exists. Aborting so nothing is overwritten."
-  echo "Edit it by hand if the key needs to change."
+if [ -f .env.local ] && grep -q '^OPENAI_API_KEY=' .env.local; then
+  echo "OPENAI_API_KEY is already set in .env.local. Aborting so nothing is overwritten."
+  echo "Edit .env.local by hand if the key needs to change."
   exit 0
 fi
 
@@ -16,5 +16,5 @@ if [ -z "$key" ]; then
   exit 0
 fi
 
-printf 'OPENAI_API_KEY=%s\n' "$key" > .env.local
-echo ".env.local written. Run 'pnpm dev' to start the app."
+printf 'OPENAI_API_KEY=%s\n' "$key" >> .env.local
+echo "OPENAI_API_KEY added to .env.local. Run 'pnpm dev' to start the app."

@@ -1,11 +1,11 @@
-# Creates .env.local with the OpenAI key for local development.
+# Adds OPENAI_API_KEY to .env.local for local development.
 # Prompts for the key so it never appears in a command line or chat.
 $ErrorActionPreference = 'Continue'
 Set-Location (Join-Path $PSScriptRoot '..')
 
-if (Test-Path .env.local) {
-    Write-Host ".env.local already exists. Aborting so nothing is overwritten." -ForegroundColor Yellow
-    Write-Host "Edit it by hand if the key needs to change."
+if ((Test-Path .env.local) -and (Select-String -Path .env.local -Pattern '^OPENAI_API_KEY=' -Quiet)) {
+    Write-Host "OPENAI_API_KEY is already set in .env.local. Aborting so nothing is overwritten." -ForegroundColor Yellow
+    Write-Host "Edit .env.local by hand if the key needs to change."
     return
 }
 
@@ -17,5 +17,5 @@ if ([string]::IsNullOrWhiteSpace($plain)) {
     return
 }
 
-"OPENAI_API_KEY=$plain" | Out-File .env.local -Encoding utf8
-Write-Host ".env.local written. Run 'pnpm dev' to start the app." -ForegroundColor Green
+Add-Content .env.local "OPENAI_API_KEY=$plain" -Encoding utf8
+Write-Host "OPENAI_API_KEY added to .env.local. Run 'pnpm dev' to start the app." -ForegroundColor Green
