@@ -14,9 +14,11 @@ const instrument = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fridgechef.patrickrobel.dk"),
   title: "FridgeChef",
   description:
     "Tag et billede af dit køleskab og få tre forslag til aftensmad du kan lave nu.",
+  twitter: { card: "summary_large_image" },
   appleWebApp: {
     capable: true,
     title: "FridgeChef",
